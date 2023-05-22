@@ -1,0 +1,31 @@
+﻿
+
+<p><em>@Message</em></p>
+
+<div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+            <div class="circle"></div>
+        </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@if (ChildContent is not null)
+    @ChildContent
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required string Message { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

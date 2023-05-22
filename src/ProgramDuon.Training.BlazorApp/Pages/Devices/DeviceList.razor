@@ -1,0 +1,38 @@
+﻿@page "/devices"
+@inject IDeviceApiService Api
+
+<h3>DeviceList</h3>
+
+@if (devices is null)
+{
+    <LoadingComponent Message="Loading...">
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Different_devices.svg" />
+        </div>
+    </LoadingComponent>
+}
+else
+{
+    <ul class="collection">
+
+        @foreach (var device in devices)
+        {
+            <DeviceComponent Device="@device" />
+        }
+
+    </ul>
+}
+
+@code {
+
+    private IEnumerable<Device>? devices;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+
+        devices = await Api.GetAllAsync();
+    }
+
+
+}

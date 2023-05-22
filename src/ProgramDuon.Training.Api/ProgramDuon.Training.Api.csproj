@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProgramDuon.Training.Domain\ProgramDuon.Training.Domain.csproj" />
+    <ProjectReference Include="..\ProgramDuon.Training.Infrastructure\ProgramDuon.Training.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

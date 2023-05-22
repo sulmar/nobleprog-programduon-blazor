@@ -1,0 +1,18 @@
+﻿@using ProgramDuon.Training.Domain;
+
+<li class="collection-item avatar">
+    <i class="material-icons circle">computer</i>
+    <span class="title">@Device.Name</span>
+    <p>
+        @Device.Description
+    </p>
+    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+
+
+@code {
+
+    [Parameter]
+    public Device Device { get; set; }
+
+}

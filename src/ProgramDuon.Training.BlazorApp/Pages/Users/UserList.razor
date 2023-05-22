@@ -1,0 +1,21 @@
+﻿@page "/users"
+
+<h3>UserList</h3>
+
+@if (users is null)
+{
+    <LoadingComponent Message="Loading..." />
+}
+else
+{
+    <ul>
+        @foreach (var user in users)
+        {
+            <li>
+                @user.FirstName @user.LastName
+            </li>
+        }
+    </ul>
+}
+
+
