@@ -27,5 +27,6 @@ git clone https://github.com/nobleprog-programduon-blazor
 #### Project
 
 - `dotnet new gitignore` - create _global.json_ file
-- `dotnet new blazorserver` - create a new project with template **Blazor Server**
-- `dotnet new blazorwasm` - create a new project with template **Blazor Web Assembly**
+- `dotnet new blazorserver` - create an app using  **Blazor Server** template
+- `dotnet new blazorwasm` - create an app using **Blazor Web Assembly** template
+- `blazorwasm-empty` -  create an app using **Blazor Web Assembly** template without Bootstrap
