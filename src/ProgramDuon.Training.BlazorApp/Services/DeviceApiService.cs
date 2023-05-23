@@ -10,5 +10,6 @@ public class DeviceApiService : IDeviceApiService
     private readonly HttpClient _httpClient;
     public DeviceApiService(HttpClient httpClient) => _httpClient = httpClient;
     public async Task<IEnumerable<Device>> GetAllAsync() => await _httpClient.GetFromJsonAsync<IEnumerable<Device>>("/api/devices");
+    public async Task<Device> GetByIdAsync(int id) => await _httpClient.GetFromJsonAsync<Device>($"/api/devices/{id}");
 }
 

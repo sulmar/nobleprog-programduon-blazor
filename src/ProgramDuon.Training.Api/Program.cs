@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ProgramDuon.Training.Domain;
 using ProgramDuon.Training.Domain.Abstractions;
 using ProgramDuon.Training.Infrastructure;
@@ -19,7 +20,7 @@ builder.Services.AddSingleton<IUserRepository, FakeUserRepository>();
 builder.Services.AddSingleton<IEnumerable<Device>>(sp =>
 {
     var faker = new DeviceFaker();
-    var devices = faker.Generate(100);
+    var devices = faker.Generate(1000);
     return devices;
 });
 
@@ -53,6 +54,7 @@ app.MapGet("/", () => "Hello World!");
 
 // GET api/devices
 app.MapGet("/api/devices", async (IDeviceRepository repository) => await repository.GetAllAsync());
+app.MapGet("/api/devices/{id:int}", async (IDeviceRepository repository, int id) => await repository.GetByIdAsync(id));
 
 
 // GET api/users

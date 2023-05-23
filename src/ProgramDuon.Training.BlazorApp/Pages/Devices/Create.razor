@@ -1,0 +1,71 @@
+﻿@page "/devices/create"
+@using Blazored.FluentValidation
+
+<h3>Create</h3>
+
+<div class="row">
+
+    <EditForm Model="@device" class="col s12" OnValidSubmit="ValidSubmit">
+
+    @*<EditForm EditContext="@editContext" class="col s12" OnSubmit="Submit">*@
+
+        @*Install-Package Blazored.FluentValidation*@
+
+        @*<DataAnnotationsValidator />*@
+
+        <FluentValidationValidator />
+
+        <ValidationSummary />
+
+        <div class="row">
+            <div class="input-field col s12">
+                <InputText id="name" type="text" @bind-Value="device.Name" class="validate" />
+                <label for="name">Name</label>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <InputTextArea id="description" type="text" class="materialize-textarea" @bind-Value="device.Description" />
+                <label for="description">Description</label>
+            </div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">computer</i>Create</button>
+       
+    </EditForm>
+</div>
+
+@code {
+    private Device device = new();
+
+
+    private EditContext? editContext;
+
+    private async Task ValidSubmit()
+    {
+
+    }
+
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(device);
+    }
+
+    private async Task Submit()
+    {
+        if (editContext is not null && editContext.Validate())
+        {
+
+        }
+        else
+        {
+            
+        }
+    }
+
+
+   
+
+}

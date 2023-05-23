@@ -1,10 +1,31 @@
 ﻿@page "/"
+@using Markdig;
+@inject IJSRuntime JSRuntime
 
-<h1>Hello, Blazor!</h1>
+@greetings
 
+@post
 
 <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
 
 <HeadLine />
 
 <About />
+
+@code {
+
+    private MarkupString greetings = new MarkupString("<h1>Hello, Blazor!</h1>");
+
+
+    private MarkupString post;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("M.AutoInit");
+
+        // dotnet add package Markdig
+        string postHtml = Markdown.ToHtml("This is a text with some **emphasis**"); ;
+
+        post = new MarkupString(postHtml);
+    }
+}

@@ -31,7 +31,12 @@ public class FakeEntityRepository<T> : IEntityRepository<T>
 
     public Task<T> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        if (_items.TryGetValue(id, out T item))
+        {
+            return Task.FromResult(item);
+        }
+        else
+            return Task.FromResult<T>(null);
     }
 
     public Task UpdateAsync(T item)

@@ -1,0 +1,71 @@
+﻿@*@page "/devices/edit/"*@
+
+@page "/devices/edit/{id:int}"
+@inject IDeviceApiService Api
+
+<h3>Edit</h3>
+
+<div class="row" @ref="elementReference">
+
+@if(device is not null)
+{
+     <EditForm Model="@device" class="col s12" OnValidSubmit="ValidSubmit">
+  
+        <FluentValidationValidator />
+
+        <ValidationSummary />
+
+        <div class="row">
+            <div class="input-field col s12">                               
+                    <InputText id="name" type="text" @bind-Value="device.Name" class="validate" @ref="nameElementReference" />
+                <label for="name">Name</label>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <InputTextArea id="description" type="text" class="materialize-textarea" @bind-Value="device.Description" />
+                <label for="description">Description</label>
+            </div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">computer</i>Create</button>
+       
+    </EditForm>
+}
+
+</div>
+
+
+@code {
+
+    // [SupplyParameterFromQuery]
+    [Parameter]
+    public int Id { get; set; }
+
+    private Device? device;
+
+    private ElementReference elementReference;
+
+    private InputText nameElementReference;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (nameElementReference is not null)
+        {
+            await nameElementReference.Element.Value.FocusAsync();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        device = await Api.GetByIdAsync(Id);
+    }
+
+    private async Task ValidSubmit()
+    {
+
+    }
+
+}

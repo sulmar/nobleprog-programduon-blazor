@@ -1,0 +1,26 @@
+﻿
+<nav>
+    <div class="input-field">
+        <input id="search" type="search" required @onkeyup="Submit" @bind-value="filter" />
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+    </div>
+</nav>
+
+
+@code {
+
+    private string filter;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private async Task Submit(KeyboardEventArgs e)
+    {
+        if (e.Code is "Enter" or "NumpadEnter")
+        {
+            await OnSearch.InvokeAsync(filter);
+        }
+    }
+
+}

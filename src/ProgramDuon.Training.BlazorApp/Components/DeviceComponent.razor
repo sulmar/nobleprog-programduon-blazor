@@ -2,7 +2,7 @@
 
 <li class="collection-item avatar">
     <i class="material-icons circle">computer</i>
-    <span class="title">@Device.Name</span>
+    <NavLink href=@($"/devices/edit/{Device.Id}")><span class="title">@Device.Name</span></NavLink>
     <p>
         @Device.Description
     </p>

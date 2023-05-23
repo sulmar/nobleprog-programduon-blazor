@@ -1,7 +1,12 @@
 ﻿@page "/devices"
 @inject IDeviceApiService Api
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 
 <h3>DeviceList</h3>
+
+<SearchBarComponent OnSearch="Search" />
+
+<a href="/devices/create" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 
 @if (devices is null)
 {
@@ -13,26 +18,51 @@
 }
 else
 {
-    <ul class="collection">
+    <ul class="collection" style="height:500px;overflow-y:scroll">
 
-        @foreach (var device in devices)
+        @*@foreach (var device in devices)
         {
             <DeviceComponent Device="@device" />
-        }
+        }*@
+
+       @* <Virtualize Context="device" Items="@devices"
+            ItemSize="25"  >
+            <DeviceComponent Device="@device" />
+        </Virtualize>*@
+
+        <Virtualize Context="device" ItemsProvider="@LoadDevices"
+            ItemSize="25"  >
+            <DeviceComponent Device="@device" />
+        </Virtualize>
+        
 
     </ul>
 }
 
 @code {
 
-    private IEnumerable<Device>? devices;
+    private ICollection<Device>? devices;
+
+    private async ValueTask<ItemsProviderResult<Device>> LoadDevices(ItemsProviderRequest request)
+    {
+        var filteredDevices = devices
+                .Skip(request.StartIndex)
+                .Take(request.Count);
+
+        // TODO: Call to API
+        return new ItemsProviderResult<Device>(filteredDevices, devices.Count);
+    }
 
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(3000);
 
-        devices = await Api.GetAllAsync();
+        devices = new List<Device>(await Api.GetAllAsync());
     }
 
+    private async Task Search(string searchText)
+    {
+        // ...
+    }
 
 }
