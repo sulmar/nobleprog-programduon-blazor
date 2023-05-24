@@ -9,6 +9,12 @@ using System.Text;
 
 namespace ProgramDuon.Training.BlazorApp.Authentication;
 
+
+public static class CustomClaimTypes
+{
+    public const string Avatar = "avatar";
+}
+
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly IAuthApiService api;

@@ -6,6 +6,12 @@ using System.Text;
 
 namespace Auth.Api.Infrastructure;
 
+public static class CustomClaimTypes
+{
+    public const string Avatar = "avatar";
+}
+
+
 // dotnet add package System.IdentityModel.Tokens.Jwt
 public class JwtTokenService : ITokenService
 {
@@ -15,7 +21,8 @@ public class JwtTokenService : ITokenService
         {
             new Claim(ClaimTypes.Name, userIdentity.FullName),
             new Claim(ClaimTypes.NameIdentifier, userIdentity.UserName),
-            new Claim(ClaimTypes.Email, userIdentity.Email)
+            new Claim(ClaimTypes.Email, userIdentity.Email),
+            new Claim(CustomClaimTypes.Avatar, userIdentity.Avatar),
         };
 
         foreach (var role in userIdentity.Roles)

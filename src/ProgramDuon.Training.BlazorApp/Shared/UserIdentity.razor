@@ -1,4 +1,4 @@
-﻿@using ProgramDuon.Training.BlazorApp.Authentication;
+﻿@using ProgramDuon.Training.BlazorApp.Authentication
 @inject CustomAuthenticationStateProvider AuthenticationStateProvider
 
 
@@ -9,8 +9,9 @@
         <li><a @onclick="@LogoutAsync">Sign Out</a></li>
         
         <li>
-            <NavLink>
-                <div>@context.User.Identity?.Name</div>
+            <NavLink class="valign-wrapper">
+                <img class="circle avatar" src="@context.User.Identity.GetAvatar()" style="width: 30px; margin: 0.5rem" alt="">
+                <span>@context.User.Identity?.Name</span>
             </NavLink>
         </li>
         
@@ -36,6 +37,7 @@
     {
         await AuthenticationStateProvider.LogoutAsync();
     }
+
 
 
 }

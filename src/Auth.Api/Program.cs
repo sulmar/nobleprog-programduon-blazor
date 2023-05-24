@@ -15,7 +15,8 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             FirstName="John",
             LastName="Smith",
             HashedPassword = "123",
-            Roles = new string[] { "administrator"}
+            Roles = new string[] { "administrator"},
+            Avatar = "http://simpleicon.com/wp-content/uploads/business-man-1.svg"
         },
 
          new UserIdentity {
@@ -24,7 +25,8 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             FirstName="Kate",
             LastName="Smith",
             HashedPassword = "123" ,
-            Roles = new string[] { "developer"}
+            Roles = new string[] { "developer"},
+            Avatar = "http://simpleicon.com/wp-content/uploads/business-woman-2.svg"
         },
 
           new UserIdentity {
@@ -33,7 +35,8 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             FirstName="Bob",
             LastName="Smith",
             HashedPassword = "123",
-            Roles = new string[] { "administrator", "developer"}
+            Roles = new string[] { "administrator", "developer"},
+            Avatar = "http://simpleicon.com/wp-content/uploads/business-man-2.svg"
         },
 
     };
@@ -70,8 +73,8 @@ app.MapGet("/", () => "Hello Auth.Api!");
 // app.MapGet("/users", (IUserIdentityRepository repository) => repository.GetAll());
 
 
-app.MapPost("/api/token/create", (LoginModel model, 
-    IAuthService authService, 
+app.MapPost("/api/token/create", (LoginModel model,
+    IAuthService authService,
     ITokenService tokenService) =>
 {
     if (authService.TryAuthorize(model.UserName, model.Password, out var identity))
