@@ -1,0 +1,88 @@
+﻿@page "/register"
+@using Blazored.FluentValidation
+@inject IAuthApiService Api
+@inject NavigationManager NavigationManager
+
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign up</h1>
+                <p class="text-xs-center">
+                    <a href="/login">Have an account?</a>
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <EditForm Model="@user" class="col s6" OnValidSubmit="RegisterAsync">
+
+                <FluentValidationValidator />
+
+                <ValidationSummary />
+
+                 <div class="row">
+                    <div class="input-field col s12">
+                        <InputText id="name" type="text" class="validate" @bind-Value="user.Username" />
+                        <label for="name">Username</label>
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <InputText id="first_name" type="text" class="validate" @bind-Value="user.FirstName"  />
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <InputText id="last_name" type="text" class="validate" @bind-Value="user.LastName" />
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <InputText id="email" type="text" class="validate" @bind-Value="user.Email" />
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <InputText id="password" type="password" @bind-Value="user.Password" class="validate" />
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <InputText id="confirm_password" type="password" @bind-Value="user.ConfirmPassword" class="validate" />
+                        <label for="confirm_password">Confirm Password</label>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right">exit_to_app</i>Register</button>
+
+            </EditForm>
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+    private User user = new();
+
+
+    private async Task RegisterAsync()
+    {
+        await Api.AddAsync(user);
+
+        NavigationManager.NavigateTo("/login");
+    }
+
+}

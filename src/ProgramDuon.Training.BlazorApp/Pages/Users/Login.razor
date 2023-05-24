@@ -3,32 +3,49 @@
 @inject CustomAuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
-<h3>Login</h3>
 
-
-<div class="row">
-
-    <EditForm Model="@loginModel" class="col s12" OnValidSubmit="LoginAsync">
-
-        <ValidationSummary />
-
+<div class="auth-page">
+    <div class="container page">
         <div class="row">
-            <div class="input-field col s12">
-                <InputText id="username" type="text" @bind-Value="loginModel.UserName" class="validate" />
-                <label for="username">Username</label>
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign in</h1>
+                <p class="text-xs-center">
+                    <a href="/login">Have an account?</a>
+                </p>
+
+
             </div>
+
+
         </div>
 
         <div class="row">
-            <div class="input-field col s12">
-                <InputText id="password" type="password" @bind-Value="loginModel.Password" class="validate" />
-                <label for="password">Password</label>
-            </div>
+
+            <EditForm Model="@loginModel" class="col s6" OnValidSubmit="LoginAsync">
+
+                <ValidationSummary />
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <InputText id="username" type="text" @bind-Value="loginModel.UserName" class="validate" />
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <InputText id="password" type="password" @bind-Value="loginModel.Password" class="validate" />
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Login</button>
+
+            </EditForm>
         </div>
 
-        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Login</button>
-       
-    </EditForm>
+
+    </div>
 </div>
 
 @code {

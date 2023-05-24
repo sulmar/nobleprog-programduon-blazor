@@ -19,6 +19,6 @@ public class AuthService : IAuthService
         userIdentity = _userIdentityRepository.GetByUsername(username);
 
         return userIdentity is not null && 
-            passwordHasher.VerifyHashedPassword(userIdentity, userIdentity.HashedPassword, password) == PasswordVerificationResult.Success;
+            passwordHasher.VerifyHashedPassword(userIdentity, userIdentity.Password, password) == PasswordVerificationResult.Success;
     }
 }

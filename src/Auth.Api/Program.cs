@@ -14,7 +14,7 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             Email="john.smith@domain.com",
             FirstName="John",
             LastName="Smith",
-            HashedPassword = "123",
+            Password = "123",
             Roles = new string[] { "administrator"},
             Avatar = "http://simpleicon.com/wp-content/uploads/business-man-1.svg"
         },
@@ -24,7 +24,7 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             Email="kate.smith@domain.com",
             FirstName="Kate",
             LastName="Smith",
-            HashedPassword = "123" ,
+            Password = "123" ,
             Roles = new string[] { "developer"},
             Avatar = "http://simpleicon.com/wp-content/uploads/business-woman-2.svg"
         },
@@ -34,7 +34,7 @@ builder.Services.AddSingleton<IEnumerable<UserIdentity>>(sp =>
             Email="bob.smith@domain.com",
             FirstName="Bob",
             LastName="Smith",
-            HashedPassword = "123",
+            Password = "123",
             Roles = new string[] { "administrator", "developer"},
             Avatar = "http://simpleicon.com/wp-content/uploads/business-man-2.svg"
         },
@@ -87,5 +87,7 @@ app.MapPost("/api/token/create", (LoginModel model,
     return Results.BadRequest(new { message = "Invalid username or password" });
 
 });
+
+app.MapPost("/api/users", async (UserIdentity userIdentity, IUserIdentityRepository repository) => await repository.AddAsync(userIdentity));
 
 app.Run();

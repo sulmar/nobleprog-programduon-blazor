@@ -5,13 +5,13 @@ VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramDuon.Training.BlazorApp", "ProgramDuon.Training.BlazorApp\ProgramDuon.Training.BlazorApp.csproj", "{FCEBF00C-E9F9-461D-BBBF-8CF85507BB39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramDuon.Training.Api", "ProgramDuon.Training.Api\ProgramDuon.Training.Api.csproj", "{2642D1EE-E667-4815-B8C1-2FDC2A1008A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramDuon.Training.Api", "ProgramDuon.Training.Api\ProgramDuon.Training.Api.csproj", "{2642D1EE-E667-4815-B8C1-2FDC2A1008A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramDuon.Training.Domain", "ProgramDuon.Training.Domain\ProgramDuon.Training.Domain.csproj", "{E2C79809-8662-40B7-9553-A162C98E7D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramDuon.Training.Domain", "ProgramDuon.Training.Domain\ProgramDuon.Training.Domain.csproj", "{E2C79809-8662-40B7-9553-A162C98E7D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramDuon.Training.Infrastructure", "ProgramDuon.Training.Infrastructure\ProgramDuon.Training.Infrastructure.csproj", "{5FD1C9AD-B36A-4410-9CFB-B2547D94C8D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramDuon.Training.Infrastructure", "ProgramDuon.Training.Infrastructure\ProgramDuon.Training.Infrastructure.csproj", "{5FD1C9AD-B36A-4410-9CFB-B2547D94C8D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{79715EE5-8F17-4827-8CD0-35BDBF174873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{79715EE5-8F17-4827-8CD0-35BDBF174873}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
