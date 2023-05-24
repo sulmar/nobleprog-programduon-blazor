@@ -12,6 +12,5 @@ public class User : BaseEntity
 
     [Compare(nameof(ConfirmPassword))]
     public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
-    public string HashedPassword { get; set; }
+    public string ConfirmPassword { get; set; }    
 }
