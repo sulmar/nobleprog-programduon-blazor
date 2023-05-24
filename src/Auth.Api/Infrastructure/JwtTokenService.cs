@@ -13,7 +13,7 @@ public class JwtTokenService : ITokenService
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, userIdentity.FirstName),
+            new Claim(ClaimTypes.Name, userIdentity.FullName),
             new Claim(ClaimTypes.NameIdentifier, userIdentity.UserName),
             new Claim(ClaimTypes.Email, userIdentity.Email)
         };
