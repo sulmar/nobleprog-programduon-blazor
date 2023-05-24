@@ -19,5 +19,6 @@ public class DeviceFaker : Faker<Device>
         RuleFor(p => p.State, f => f.PickRandom<DeviceState>());
         RuleFor(p => p.IsRemoved, f => f.Random.Bool(0.3f));
         Ignore(p => p.BateryLevel);
+        RuleFor(p => p.MemoryUsed, f => f.Random.Double());
     }
 }

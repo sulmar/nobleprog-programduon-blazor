@@ -1,0 +1,41 @@
+﻿@using ProgramDuon.Training.BlazorApp.Authentication;
+@inject CustomAuthenticationStateProvider AuthenticationStateProvider
+
+
+<AuthorizeView>
+
+    <Authorized>
+                
+        <li><a @onclick="@LogoutAsync">Sign Out</a></li>
+        
+        <li>
+            <NavLink>
+                <div>@context.User.Identity?.Name</div>
+            </NavLink>
+        </li>
+        
+    </Authorized>
+
+    <Authorizing>
+        <LoadingComponent Message="Authorizing..." />
+    </Authorizing>
+
+    <NotAuthorized>
+        <li>
+            <NavLink href="/login">
+                Sign In
+            </NavLink>
+        </li>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+
+    private async Task LogoutAsync()
+    {
+        await AuthenticationStateProvider.LogoutAsync();
+    }
+
+
+}

@@ -1,0 +1,10 @@
+
+POST https://localhost:7015/api/token/create
+Content-Type: application/json
+
+{
+    "username": "john",
+    "password": "123"
+}
+
+###

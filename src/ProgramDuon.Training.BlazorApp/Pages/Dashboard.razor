@@ -1,0 +1,59 @@
+﻿@page "/Dashboard"
+@inject IUserApiService UserApi
+@inject IDeviceApiService DeviceApi
+
+@attribute [Authorize]
+
+@if (_devices is not null && _users is not null)
+{
+    <div class="cards">
+
+        <AuthorizeView Roles="administrator">
+
+            <Authorized>
+                <DashboardItem Title="Used memory" numOfItms=@($"{UsedMemory()}%")>
+                    <div class="progress">
+                        <div class="determinate" style="width:@((int)UsedMemory())%"></div>
+                    </div>
+                </DashboardItem>
+            </Authorized>
+
+
+        </AuthorizeView>
+
+        <DashboardItem Title="Machines running" NumOfItms=@($"{MachinesRunning}")>
+        </DashboardItem>
+        <DashboardItem Title="Machines stopped" NumOfItms=@($"{MachinesStopped}")>
+        </DashboardItem>
+        <DashboardItem Title="Users" NumOfItms=@($"{_users.Count()}")>
+        </DashboardItem>
+    </div>
+}
+else
+{
+    <LoadingComponent Message="Loading Content" />
+}
+
+@code {
+
+    private IEnumerable<User>? _users;
+    private IEnumerable<Device>? _devices;
+
+    private int MachinesRunning => _devices.Where(d => d.State == DeviceState.Running).Count();
+    private int MachinesStopped => _devices.Where(d => d.State == DeviceState.Stopped).Count();
+
+    private double UsedMemory()
+    {
+        if (_devices is null)
+            return 0.0;
+        var usedMemory = _devices.Aggregate(0.0, (current, device) => current + device.MemoryUsed);
+
+        return usedMemory / _devices.Count();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _users = await UserApi.GetAllAsync();
+        _devices = await DeviceApi.GetAllAsync();
+    }
+}

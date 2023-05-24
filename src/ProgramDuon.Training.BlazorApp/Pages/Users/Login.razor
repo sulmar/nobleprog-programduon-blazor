@@ -1,0 +1,45 @@
+﻿@page "/login"
+@using ProgramDuon.Training.BlazorApp.Authentication
+@inject CustomAuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<h3>Login</h3>
+
+
+<div class="row">
+
+    <EditForm Model="@loginModel" class="col s12" OnValidSubmit="LoginAsync">
+
+        <ValidationSummary />
+
+        <div class="row">
+            <div class="input-field col s12">
+                <InputText id="username" type="text" @bind-Value="loginModel.UserName" class="validate" />
+                <label for="username">Username</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <InputText id="password" type="password" @bind-Value="loginModel.Password" class="validate" />
+                <label for="password">Password</label>
+            </div>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">exit_to_app</i>Login</button>
+       
+    </EditForm>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+
+    private async Task LoginAsync()
+    {
+        await AuthenticationStateProvider.LoginAsync(loginModel);
+
+        NavigationManager.NavigateTo(string.Empty);
+    }
+}
+
+

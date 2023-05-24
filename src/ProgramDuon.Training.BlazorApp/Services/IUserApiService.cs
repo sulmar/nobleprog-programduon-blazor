@@ -6,4 +6,3 @@ public interface IUserApiService
 {
     Task<IEnumerable<User>> GetAllAsync();
 }
-

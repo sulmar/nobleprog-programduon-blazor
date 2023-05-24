@@ -12,12 +12,14 @@ public class Device : BaseEntity
     public DeviceState State { get; set; }
     public bool IsRemoved { get; set; }
 
+    public double MemoryUsed { get; set; }
     public float BateryLevel { get; set; }
 }
 
 public enum DeviceState
 {
     Stopped,
+    Running,
     Starting,
     Started
 }

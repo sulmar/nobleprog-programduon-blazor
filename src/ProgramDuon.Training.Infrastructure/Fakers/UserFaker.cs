@@ -12,5 +12,8 @@ public class UserFaker : Faker<User>
         RuleFor(p => p.FirstName, f => f.Person.FirstName);
         RuleFor(p => p.LastName, f => f.Person.LastName);
         RuleFor(p => p.Email, (f, user) => $"{user.FirstName}.{user.LastName}@programduo.se"); // {firstname}.{lastname}@programduo.se
+
+        Ignore(p => p.Password);
+        Ignore(p => p.ConfirmPassword);
     }
 }

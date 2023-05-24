@@ -23,6 +23,13 @@
     {
         await JSRuntime.InvokeVoidAsync("M.AutoInit");
 
+        // Console.WriteLine("Hello World!");
+        await JSRuntime.InvokeVoidAsync("console.log", "Hello world!");
+
+        var result = await JSRuntime.InvokeAsync<bool>("");
+
+        // await JSRuntime.InvokeVoidAsync("console.log", new { html = "Hello world!", number = 10 });
+
         // dotnet add package Markdig
         string postHtml = Markdown.ToHtml("This is a text with some **emphasis**"); ;
 
