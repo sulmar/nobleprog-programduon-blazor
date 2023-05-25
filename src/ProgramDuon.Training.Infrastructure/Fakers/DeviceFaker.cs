@@ -20,5 +20,7 @@ public class DeviceFaker : Faker<Device>
         RuleFor(p => p.IsRemoved, f => f.Random.Bool(0.3f));
         Ignore(p => p.BateryLevel);
         RuleFor(p => p.MemoryUsed, f => f.Random.Double());
+        Ignore(p => p.MinTemperature);
+        Ignore(p => p.MaxTemperature);
     }
 }

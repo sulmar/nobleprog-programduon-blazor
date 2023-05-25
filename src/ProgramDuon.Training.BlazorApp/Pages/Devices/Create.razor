@@ -11,9 +11,9 @@
 
         @*Install-Package Blazored.FluentValidation*@
 
-        @*<DataAnnotationsValidator />*@
+        <DataAnnotationsValidator />
 
-        <FluentValidationValidator />
+        @*<FluentValidationValidator />*@
 
         <ValidationSummary />
 
@@ -29,6 +29,19 @@
                 <InputTextArea id="description" type="text" class="materialize-textarea" @bind-Value="device.Description" />
                 <label for="description">Description</label>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <InputNumber id="minTemperature" type="text" class="materialize-textarea" @bind-Value="device.MinTemperature" />
+                <label for="minTemperature">Min Temperature</label>
+            </div>
+
+             <div class="input-field col s6">
+                <InputNumber id="maxTemperature" type="text" class="materialize-textarea" @bind-Value="device.MaxTemperature" />
+                <label for="maxTemperature">Max Temperature</label>
+            </div>
+
         </div>
 
         <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">computer</i>Create</button>
